@@ -62,7 +62,7 @@ while (nombreUsuario.toUpperCase() !== "ESC") {
     // Verificacion de los prod|uctos y sí son válidos
     if (precio1 !== 0 && precio2 !== 0) {
         let resultado = precio1 + precio2;
-        console.log("Resultado de ambos productos es:", resultado); // Chequeo de datos
+        console.log("Resultado de ambos productos es:" + resultado); // Chequeo de datos
     } else {
         alert("Hubo un problema con la selección de productos.");
     }
