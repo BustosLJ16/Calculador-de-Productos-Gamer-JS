@@ -37,34 +37,34 @@ while (nombreUsuario.toUpperCase() !== "ESC") {
 
     // Proceso de datos
     // Precio y Cuenta de los Productos
-    let precio1, precio2;
-
-    if (producto1 === 1) {
-        precio1 = 19000;
-    } else if (producto1 === 2) {
-        precio1 = 45000;
-    } else if (producto1 === 3) {
-        precio1 = 149750;
-    } else if (producto1 === 4) {
-        precio1 = 17000;
-    } else if (producto1 === 5) {
-        precio1 = 23100;
-    } else {
-        console.log("Producto 1 no válido");
+    function obtenerPrecioProducto(numeroProducto) {
+        switch (numeroProducto) {
+            case 1:
+                return 19000;
+            case 2:
+                return 45000;
+            case 3:
+                return 149750;
+            case 4:
+                return 17000;
+            case 5:
+                return 23100;
+            default:
+                console.log("Producto no válido");
+                return 0; // O retorna null, NaN, o cualquier valor que indique que el producto no es válido
+        }
     }
 
-    if (producto2 === 1) {
-        precio2 = 19000;
-    } else if (producto2 === 2) {
-        precio2 = 45000;
-    } else if (producto2 === 3) {
-        precio2 = 149750;
-    } else if (producto2 === 4) {
-        precio2 = 17000;
-    } else if (producto2 === 5) {
-        precio2 = 23100;
+    // Establecer precio a cada producto seleccionado por el usuario
+    let precio1 = obtenerPrecioProducto(producto1);
+    let precio2 = obtenerPrecioProducto(producto2);
+
+    // Verificacion de los productos y sí son válidos
+    if (precio1 !== 0 && precio2 !== 0) {
+        let resultado = precio1 + precio2;
+        console.log("Resultado:", resultado); // Chequeo de datos
     } else {
-        console.log("Producto 2 no válido");
+        alert("Hubo un problema con la selección de productos.");
     }
 
     // Cuentas de precios
