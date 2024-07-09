@@ -1,124 +1,162 @@
-let nombreUsuario = prompt("Ingrese Su Nombre: - [ESC Para salir]");
+// Función para ingresar Nombre del Usuario y ejecutar en caso que sea distinto a "ESC"
+let nombreUsuario; // Declaro variable global
+function ingresoNombreUsuario() {
+    nombreUsuario = prompt("Por favor, Ingrese su Nombre aqui: - (ESC) para salir");
 
-while (nombreUsuario.toUpperCase() !== "ESC") {
-
-    // Selección de Productos
-    let mensajeProductos = nombreUsuario + ", por favor, indique el producto #1 y #2 que desea comprar:\n";
-    mensajeProductos += "1. Auris Redragon H120 $19.000\n";
-    mensajeProductos += "2. Teclado Redragon Kumara K552 $45.000\n";
-    mensajeProductos += "3. Monitor LG 24'' 24MK430H-B $149750\n";
-    mensajeProductos += "4. Mouse Redragon Centrophorus M601 $17.000\n";
-    mensajeProductos += "5. Webcam Logitech C925E $23.100";
-
-    let producto1 = parseInt(prompt(mensajeProductos)); // Ingreso del Producto #1
-
-    // Validación de seleccion de mis productos
-    while (producto1 !== 1 && producto1 !== 2 && producto1 !== 3 && producto1 !== 4 && producto1 !== 5) {
-        alert("Esa opción no es válida. Por favor, selecciona 1, 2, 3, 4 o 5");
-        producto1 = parseInt(prompt(mensajeProductos));
-    }
-
-    let producto2 = parseInt(prompt(mensajeProductos)); // Ingreso del Producto #2
-
-    // Validación de seleccion de mis productos 
-    while (producto2 !== 1 && producto2 !== 2 && producto2 !== 3 && producto2 !== 4 && producto2 !== 5) {
-        alert("Esa opción no es válida. Por favor, selecciona 1, 2, 3, 4 o 5");
-        producto2 = parseInt(prompt(mensajeProductos));
-    }
-
-    console.log(nombreUsuario + " Seleccionó los productos: " + producto1 + " " + producto2); // chequeo de datos
-
-    // Sección e Ingreso del cupón
-    let cupon = "CUPON10";
-    let mensajeCupon = "¿Usted tiene un cupón de descuento?\n";
-    mensajeCupon += "1. SI\n";
-    mensajeCupon += "2. NO";
-    let preguntarPorCupon = parseInt(prompt(mensajeCupon));
-
-    // Proceso de datos
-    // Precio y Cuenta de los Productos
-    function obtenerPrecioProducto(numeroProducto) {
-        switch (numeroProducto) {
-            case 1:
-                return 19000;
-            case 2:
-                return 45000;
-            case 3:
-                return 149750;
-            case 4:
-                return 17000;
-            case 5:
-                return 23100;
-            default:
-                console.log("Producto no válido");
-                return 0; // O retorna null, NaN, o cualquier valor que indique que el producto no es válido
-        }
-    }
-
-    // Establecer precio a cada producto seleccionado por el usuario
-    let precio1 = obtenerPrecioProducto(producto1);
-    let precio2 = obtenerPrecioProducto(producto2);
-
-    // Verificacion de los prod|uctos y sí son válidos
-    if (precio1 !== 0 && precio2 !== 0) {
-        let resultado = precio1 + precio2;
-        console.log("Resultado de ambos productos es:" + resultado); // Chequeo de datos
+    if (nombreUsuario.toUpperCase() !== "ESC") {
+        ejecutarPrograma();
     } else {
-        alert("Hubo un problema con la selección de productos.");
-    }
-
-    // Cuentas de precios
-    let resultado = precio1 + precio2; // Suma de los precios
-    let precioConCupon = resultado * 0.9; // Precio final CON Cupón
-    let precioSinCupon = resultado; // Precio final SIN Cupón
-
-    // Mensajes con el descuento aplicado y sin Aplicarlo
-    let mensajeConDescuento = nombreUsuario + " ¡Su compra fue efectuada con éxito!\n";
-    mensajeConDescuento += "Su compra fue de los productos: #" + producto1 + " y #" + producto2 + "\n";
-    mensajeConDescuento += "Con un valor de: $" + precioSinCupon + "\n";
-    mensajeConDescuento += "Cupón de descuento aplicado con éxito con valor final: $" + precioConCupon;
-    let mensajeSinDescuento = nombreUsuario + " ¡Su compra fue efectuada con éxito!\n";
-    mensajeSinDescuento += "Su compra fue de los productos: #" + producto1 + " y #" + producto2 + "\n";
-    mensajeSinDescuento += "Con un valor de: $" + precioSinCupon + "\n";
-
-
-    // Procesamiento del cupón
-    while (preguntarPorCupon !== 1 && preguntarPorCupon !== 2) {
-        alert("Esa opción no es válida. Por favor, selecciona 1 o 2");
-        preguntarPorCupon = parseInt(prompt(mensajeCupon));
-    }
-
-    // Validación del Cupón
-    if (preguntarPorCupon === 1) {
-        let tieneCupon = prompt("Ingrese Aquí su CUPÓN");
-        if (tieneCupon.toUpperCase() === "CUPON10") {
-            alert("Tu Cupón es válido. Se aplicará el descuento a tu compra!");
-            alert(mensajeConDescuento);
-        } else {
-            alert("Lo sentimos mucho. Tu cupón NO es válido.");
-            alert(mensajeSinDescuento);
-        }
-    } else if (preguntarPorCupon === 2) {
-        alert("Lo sentimos mucho. Esperamos que tengas uno para la próxima compra.");
-        alert(mensajeSinDescuento);
-    }
-
-    // Pregunta para continuar o finalizar el programa
-    let mensajeDeCierre = nombreUsuario + ", ¿Qué desea hacer ahora?\n 1. Hacer otra compra\n 2. Finalizar el programa";
-    let finalizar = parseInt(prompt(mensajeDeCierre));
-
-    while (finalizar !== 1 && finalizar !== 2) {
-        alert("Esa opción no es válida. Por favor, selecciona 1 o 2");
-        finalizar = parseInt(prompt(mensajeDeCierre));
-    }
-
-    if (finalizar === 1) {
-        nombreUsuario = prompt("Ingrese Su Nombre: - [ESC Para salir]");
-    } else if (finalizar === 2) {
-        alert("Muchas gracias por usar nuestra calculadora. ¡Hasta pronto!");
-        break;
+        alert("Decidiste salir. ¡Nos vemos pronto!");
     }
 }
 
-// Alerta de cierre del programa, si el usuario escribio "ESC" en la primera entrada de datos (Nombre)
-alert("decidiste salir del calculador. ¡Hasta luego!");
+// Declaro una función para la ejecucion del programa
+function ejecutarPrograma() {
+
+    // Declaro Array principal con lista de productos
+    const listaProductos = [{
+            id: 1,
+            nombre: "Auriculares Redragon H120",
+            precio: 19500
+        },
+        {
+            id: 2,
+            nombre: "Teclado Kumara Redragon K552",
+            precio: 45000
+        },
+        {
+            id: 3,
+            nombre: "Mouse Redragon Centrophorus M601",
+            precio: 17700
+        },
+        {
+            id: 4,
+            nombre: "Webcam Logitech C925E",
+            precio: 23450
+        },
+        {
+            id: 5,
+            nombre: "Monitor LG 24''",
+            precio: 153900
+        }
+    ];
+
+
+    // Constructor y Métodos para el procesamiento de los productos
+    class productos {
+        constructor(productos) {
+            this.items = productos;
+        }
+
+        agregarProd(nombre, precio) {
+            const producto = {
+                id: this.darId(),
+                nombre: nombreProd,
+                precio: precioProd
+            }; // Creación del nuevo producto como un objeto
+            this.items.push(producto); // Agregar el nuevo Producto a mi Array de Productos
+            alert(nombreUsuario + " Tu producto fue agregado con exito");
+        }
+
+        obtenerProd() {
+            return this.items;
+        }
+
+        mostrarProd() {
+            let salida = "";
+
+            for (const producto of this.items) {
+                salida += `Prod: #${producto.id} - ${producto.nombre} - ${producto.precio} \n`;
+            }
+
+            alert(salida);
+        }
+
+        darId() { // Le doy un ID al nuevo Producto Ingresado en base al último producto registrado
+            let max = 0;
+
+            this.items.forEach(prod => {
+                if (prod.id > max) {
+                    max = prod.id
+                }
+            });
+
+            return max + 1;
+        }
+
+        borrarProd(id) {
+            this.items = this.items.filter(item => item.id != id);
+
+            console.log("Se eliminó el producto número #" + id)
+        }
+
+
+    }
+
+    // Crear nueva instancia de productos
+    const catalogo = new productos(listaProductos);
+
+    // Ver mi lista de productos
+    console.log(catalogo.obtenerProd());
+
+    // Preguntar si quiere Agregar un Producto del array
+    let productoNuevo = parseFloat(prompt(nombreUsuario + " ¿Usted desea agregar un nuevo producto?\n1-SI\n2-NO"));
+    let nombreProd;
+    let precioProd;
+
+    //Procesamiento de la respuesta 
+    if (productoNuevo === 1) {
+        // Ingreso de datos del Producto
+        nombreProd = prompt(nombreUsuario + " Ingrese aqui el Nombre del Producto");
+        precioProd = parseFloat(prompt(nombreUsuario + " Ingrese aqui el Precio del Producto"));
+        catalogo.agregarProd(nombreProd, precioProd);
+    } else {
+        alert("Usted decidio no agregar nada. La lista quedo de la siguiente forma:");
+    }
+
+    // Ver la lista de Productos
+    catalogo.mostrarProd();
+
+    // Preguntar si quiere eliminar un producto del array
+    let eliminarProd = parseFloat(prompt(nombreUsuario + " ¿Desea eliminar un producto?\n1-SI\n2-NO"));
+    let eliminarProdId;
+
+    // Procesamiento y eliminación del Producto
+    if (eliminarProd === 1) {
+        eliminarProdId = parseFloat(prompt("Indique el Número del Producto"));
+        catalogo.borrarProd(eliminarProdId);
+        alert("Se eliminó el producto #" + eliminarProdId); // Confirmar Eliminación de un producto
+        alert("Esta es la nueva lista de Productos:")
+    } else {
+        alert("No eliminaste ningún Producto.\n La lista quedo de la siguiente forma:");
+    }
+    catalogo.mostrarProd(); // Muesto lista final
+
+    // Calculadora del valor Final
+
+    function calcularValorProductos() {
+        let total = 0;
+
+        let calcularProductos = parseFloat(prompt(nombreUsuario + " ¿Deseas Calcular el valor final de tu compra?\n1-SI\n2-NO"));
+
+        if (calcularProductos === 1) {
+            let prodNumeroUno = parseFloat(prompt("Ingresa el ID del Producto seleccionado #1")); // Ingreso del ID #1
+            let prodNumeroDos = parseFloat(prompt("Ingresa el ID del Producto seleccionado #2")); // Ingreso del ID #2
+
+            // Buscar y comparar el ID del producto con los de mi Array, obtener el precio del producto y sumarlos
+            for (let i = 0; i < listaProductos.length; i++) {
+                if (listaProductos[i].id === prodNumeroUno || listaProductos[i].id === prodNumeroDos) {
+                    total += listaProductos[i].precio
+                }
+            }
+
+            alert(nombreUsuario + " El valor total de tu compra es: $" + total);
+            alert(nombreUsuario + " Gracias por usar nuestro programa :)");
+
+        } else {
+            alert(nombreUsuario + " Decidiste no calcular el valor final. Nos Vemos Luego!");
+        }
+    }
+    calcularValorProductos();
+}
+ingresoNombreUsuario();
